@@ -1,0 +1,39 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	background-color: #F5F8F7;
+}
+
+.container form{
+	font-family: 'Open Sans', sans-serif;
+}
+
+@media screen and (min-width: 1200px){
+	#blank{
+		height: 250px;
+	}
+}
+@media (min-width: 768px) and (max-width: 1200px){
+	#blank{
+		height: 100px;
+	}
+}
+@media (min-width: 0px) and (max-width: 768px){
+	#blank{
+		height: 50px;
+	}
+}
+
+#submit{
+	float: none;
+	text-align: center;
+}
+
+#login{
+	border: 2px solid black;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+	padding: 25px;
+}

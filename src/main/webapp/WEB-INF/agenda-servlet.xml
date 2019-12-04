@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+		
+	<!-- Ubicacion de los controller -->
+	<context:component-scan base-package="com.agenda" />
+	<mvc:annotation-driven />
+	
+	<!-- Ubicacion de los recursos de las paginas(css/js) -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+		
+	<!-- Instancio los mapping para los controller -->
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- Conexion a Base de Datos -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/Agenda" />
+		<property name="username" value="root" />
+		<property name="password" value="admin" />
+
+	</bean>
+	
+	<!-- Definicion de Beans -->
+	
+	<bean id="usuarioBean" class="com.agenda.usuario.bean.UsuarioBean" />
+	<bean id="usuarioDao" class="com.agenda.usuario.dao.UsuarioDao" />
+	<bean id="profesorBean" class="com.agenda.profesor.bean.ProfesorBean" />
+	<bean id="profesorDao" class="com.agenda.profesor.dao.ProfesorDao" />
+	<bean id="materiaBean" class="com.agenda.materia.bean.MateriaBean" />
+	<bean id="materiaDao" class="com.agenda.materia.dao.MateriaDao" />
+	<bean id="PlantillaDao" class="com.agenda.PlantillaDao" />
+		
+	<!-- Archivos de propiedades --> 
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>resources/properties/resources</value>
+			</list>
+		</property>
+	</bean>
+</beans>
